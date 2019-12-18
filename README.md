@@ -6,6 +6,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|kana|string|null: false|
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
 |password|string|null: false, default: ""|
@@ -14,13 +15,14 @@
 |birthday|string|null: false|
 |salse|integer|null: false|
 |image|text||
+|deleted_at|datetime|null:false|
 
 ### Association
-- has_many :addresses
-- has_many :reviews
-- has_many :cards
-- has_many :messages
-- has_many :likes
+- has_many :addresses dependent: :destroy
+- has_many :reviews dependent: :destroy
+- has_many :cards dependent: :destroy
+- has_many :messages dependent: :destroy
+- has_many :likes dependent: :destroy
 - has_many :items
 
 ## addressテーブル
@@ -42,9 +44,12 @@
 |------|----|-------|
 |text|string|null: false|
 |evaluation|integer|null: false|
+|user_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
+- belongs_to :item
 
 ### cardsテーブル
 
@@ -63,7 +68,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|image|text|null: false|
 |price|integer|null: false|
 |status|string|null: false|
 |postage|string|null: false|
@@ -79,8 +83,19 @@
 - belongs_to :user
 - belongs_to :category
 - belongs_to :brand
-- has_many :messages
-- has_many :likes
+- has_many :messages dependent: :destroy
+- has_many :likes dependent: :destroy
+- has_many :item_images dependent: :destroy
+- has_many :reviews
+
+## item_imagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|item_id|integer|null: false|
+|image_url|string|null: false|
+
+### Association
+- belongs_to :item
 
 ## messagesテーブル
 |Column|Type|Options|
