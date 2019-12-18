@@ -1,24 +1,60 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|nickname|string|null: false|
+|email|string|null: false, unique: true|
+|password|string|null: false, default: ""|
+|tell|integer|null: false|
+|postnumber|string|null: false|
+|address|string|null: false|
+|birthday|string|null: false|
+|salse|integer|null: false|
+|image|text||
 
-* Ruby version
+### Association
+- has_many :items
+- has_many :messages
+- has_many :likes
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|image|text|null: false|
+|price|integer|null: false|
+|status|string|null: false|
+|postage|string|null: false|
+|region|string|null: false|
+|days|string|null: false|
+|user_id|integer|null: false, foreign_key: true|
 
-* Database creation
+### Association
+- belongs_to :user
+- has_many :messages
+- has_many :likes
 
-* Database initialization
+## messagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|string|null: false|
+|item_id|integer|null: false|
+|user_id|integer|null: false|
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- belongs_to :items
 
-* Services (job queues, cache servers, search engines, etc.)
+## likesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :user
+- belongs_to :item
