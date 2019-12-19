@@ -38,8 +38,8 @@
 |post_number|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
-|address_1|string|null: false|
-|address_2|string||
+|address_line|string|null: false|
+|building_name|string||
 |user_id|references|null: false, foreign_key: true|
 
 ### Association
