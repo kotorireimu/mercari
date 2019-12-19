@@ -35,11 +35,11 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|postnumber|string|null: false|
+|post_number|string|null: false|
 |prefecture|string|null: false|
 |city|string|null: false|
-|address1|string|null: false|
-|address1|string||
+|address_1|string|null: false|
+|address_2|string||
 |user_id|references|null: false, foreign_key: true|
 
 ### Association
@@ -192,6 +192,7 @@
 |shipping_way|integer|null: false|
 |region|integer|null: false|
 |handing_time|integer|null: false|
+|item_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :item
