@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  validates :nickname, :family_name, :first_name, :family_name_kana, :first_name_kana, :tell, :birth_year, :birth_month, :birth_day, :delete_at, presence: true
-  validates :tell, unique: true
+  validates :family_name, :first_name, :family_name_kana, :first_name_kana, :birth_year, :birth_month, :birth_day, :delete_at, presence: true
+  validates :nickname, presence: true, length: { maximum: 20 } 
+  validates :tell, presence: true, uniqueness: true
 end
