@@ -10,13 +10,14 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :family_name_kana, null: false
       t.string :first_name_kana , null: false
       t.integer :tell           , null: false, unique: true
+      # tellのカラムの型はstringに変更しました。
       t.string :birth_year      , null: false
       t.string :birth_month     , null: false
       t.string :birth_day       , null: false
       t.integer :sales          , null: false
       t.text :image
       t.datetime :deleted_at    ,null: false
-      t.string :email,              null: false, default: ""
+      t.string :email,              null: false, unique: true
       t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
